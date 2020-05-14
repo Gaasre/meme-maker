@@ -1,0 +1,23 @@
+<nz-layout style="height: 100vh">
+  <nz-header style="background-color: #fff;box-shadow: 0px 1px 6px 0px rgba(0,0,0,0.2); z-index: 1;">
+    <div id="logo" style="height: 80%; display: inline-block;cursor: pointer;">
+      <a routerLink="/"><img style="max-height: 100%;" src="assets/logo.png" alt="meme-maker-logo"></a>
+    </div>
+  </nz-header>
+  <nz-content style="background-color: #fff">
+    <div style="padding: 100px 20px; text-align: center">
+      <h1>Meme Editor</h1>
+      <h2><b>Meme Maker</b> is a free online meme editing tool</h2>
+      <h3>Get started now</h3>
+      <a routerLink="/editor"><button nz-button style="height: 60px; width: 40%; font-size: 21px; font-weight: 600"
+        nzType="primary"><i nz-icon type="edit" nzTheme="outline"></i> Select a meme template</button></a>
+      <div class="snippets">
+        <a routerLink="/editor/Batman-Slapping-Robin"><img src="assets/snippets/snippet1.jpg" alt=""></a>
+        <a routerLink="/editor/Is-This-A-Pigeon"><img src="assets/snippets/snippet2.jpg" alt=""></a>
+        <a routerLink="/editor/Left-Exit-12-Off-Ramp"><img src="assets/snippets/snippet3.jpg" alt=""></a>
+        <a routerLink="/editor/Unsettled-Tom"><img src="assets/snippets/snippet4.jpg" alt=""></a>
+      </div>
+    </div>
+  </nz-content>
+  <nz-footer style="padding: 12px 24px; background-color:#fff">© MemeMaker 2019 ® - Your Meme Generator</nz-footer>
+</nz-layout>

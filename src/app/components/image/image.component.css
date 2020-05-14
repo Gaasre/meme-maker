@@ -1,0 +1,15 @@
+span {
+    padding: 5px;
+    cursor: move;
+    position: absolute;
+    border: 2px dashed #60b2f500;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+}
+
+.selected {
+    border: 2px dashed #60b2f5;
+}

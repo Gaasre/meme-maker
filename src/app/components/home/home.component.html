@@ -1,0 +1,78 @@
+<nz-layout style="height: 100vh">
+  <nz-sider style="background: #fff;overflow-y: auto" id="memes-maker-slider-container" [nzWidth]="260">
+    <div id="meme-search-bar-container" style="margin: 10px 10px 20px 10px;">
+      <nz-input-group [nzSuffix]="suffixIconSearch">
+        <input id="meme-search-bar" [(ngModel)]="searchValue" (ngModelChange)="Search($event)" type="text" nz-input
+          placeholder="Search for the meme ..." />
+      </nz-input-group>
+      <ng-template #suffixIconSearch>
+        <i nz-icon type="search"></i>
+      </ng-template>
+    </div>
+    <div *ngIf="selectedMeme" style="text-align: center; width: 100%; margin-bottom: 10px">
+      <button nz-tooltip nzTitle="Add Caption" id="add-meme-caption" nz-button nzType="default" (click)="addText()"><i
+          nz-icon type="edit" nzTheme="outline"></i></button>
+      <nz-divider nzType="vertical"></nz-divider>
+      <button nz-tooltip nzTitle="Add Image" id="add-image" (click)="uploadinput.click()" nz-button nzType="default"><i
+          nz-icon type="picture" nzTheme="outline"></i></button>
+      <nz-divider nzType="vertical"></nz-divider>
+      <button nz-tooltip nzTitle="Save" id="" (click)="Save()" nz-button nzType="primary"><i nz-icon type="download"
+          nzTheme="outline"></i></button>
+      <input style="display: none" type="file" name="avatar" (change)="onFileChange($event)" #uploadinput />
+    </div>
+    <div id="memes-maker-slider"
+      style="width: 100%; background-color: #fff; display: flex; flex-wrap: wrap; align-content: flex-start">
+      <div id="meme-thumbnail-wrapper" nz-tooltip [nzTitle]="meme.name" *ngFor="let meme of memesOutput"
+        [ngClass]="{'meme-selected': meme.name === selectedMeme?.name}"
+        style="width: 100px; height: 100px; padding: 5px; cursor: pointer; margin: 10px" (click)="selectMeme()">
+        <a [routerLink]="'/editor/' + meme.img.split('.')[0]"><img id="meme-thumbnail"
+            style="max-width:100%; height:auto; max-height: 100%" [src]="'assets/thumbnails/' + meme.img"
+            [alt]="meme.name"></a>
+      </div>
+    </div>
+  </nz-sider>
+  <nz-layout style="background-color: #ececec;">
+    <nz-header style="background-color: #fff; border-left: 1px solid #ece9e9;">
+      <div id="logo" style="height: 80%; display: inline-block;cursor: pointer">
+        <a routerLink="/"><img style="max-height: 100%;" src="assets/logo.png" alt="meme-maker-logo"></a>
+      </div>
+    </nz-header>
+    <nz-content id="meme-maker-container" style="position: relative">
+      <div id="meme-maker-toolbox" *ngIf="selectedElement" style="box-shadow: 0 3px 6px 0 rgba(0,0,0,.14); position: absolute; top: 15px; background-color:#fff; padding: 10px; border-radius: 8px; margin-left: 175px;right: 0;
+        left: 0;
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+        z-index: 1">
+        <span *ngIf="selectedElement.type === 'text'">
+          <input style="width: 150px" nz-input id="meme-caption-text" [(ngModel)]="selectedElement.content"
+            (ngModelChange)="changeText($event)" />
+          <nz-divider nzType="vertical"></nz-divider>
+          <nz-input-number id="meme-caption-size" style="margin-right: 10px" id="size" [nzMin]="1" [nzMax]="72"
+            [nzStep]="1" nz-input [(ngModel)]="selectedElement.size" (ngModelChange)="changeFontSize($event)">
+          </nz-input-number>
+          <button id="meme-caption-bold" (click)="toBold()" [ngClass]="{'button-selected': selectedElement.isBold}"
+            style="margin-right: 10px" nz-button nzType="default"><i nz-icon type="bold" nzTheme="outline"></i></button>
+          <button id="meme-caption-italic" (click)="Oblique()"
+            [ngClass]="{'button-selected': selectedElement.isOblique}" style="margin-right: 10px" nz-button
+            nzType="default"><i nz-icon type="italic" nzTheme="outline"></i></button>
+          <button id="meme-caption-underline" (click)="Underline()"
+            [ngClass]="{'button-selected': selectedElement.isUnderlined}" style="margin-right: 10px" nz-button
+            nzType="default"><i nz-icon type="underline" nzTheme="outline"></i></button>
+          <app-color-picker id="meme-caption-color" (colorChanged)="changeColor($event)"
+            [selectedColor]="selectedElement.color">
+          </app-color-picker>
+          <nz-divider nzType="vertical"></nz-divider>
+        </span>
+        <button id="delete-meme-caption" (click)="Delete()" nz-button nzType="default"><i nz-icon type="delete"
+            nzTheme="outline"></i></button>
+      </div>
+      <div id="meme-maker-result"
+        style="max-width: fit-content; margin: auto; margin-top: 80px; margin-bottom: 30px; position: relative;box-shadow: 0 4px 8px 0 rgba(0,0,0,.3);"
+        #design>
+        <img id="meme" (click)="deselectAll()" style="max-width: 800px; height:auto; max-height: 100%"
+          [src]="'assets/' + selectedMeme?.img" [alt]="selectedMeme?.name">
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

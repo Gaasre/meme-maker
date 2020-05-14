@@ -1,0 +1,17 @@
+span {
+    padding: 5px;
+    cursor: move;
+    position: absolute;
+    border: 2px dashed #60b2f500;
+}
+
+span p {
+    user-select: none;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.selected {
+    border: 2px dashed #60b2f5;
+}
