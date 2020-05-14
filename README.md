@@ -2,8 +2,9 @@
 
 This project is an app for making customized memes using an empty model
 
-## Development server
+## Build & Run
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+* `ng build --prod && ng run memer:server:production`
+* `node dist/server`
 
-Make sure you change the API link in `services\memes.service.ts` for it to work.
+Then navigate to `http://localhost:4200/`.
